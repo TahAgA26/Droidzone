@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="DroidZone؛ اخبار اندروید، آموزش HyperOS، اپلیکیشن‌ها و دنیای تکنولوژی.">
+  <meta name="robots" content="index,follow">
+  <title>DroidZone — دنیای اندروید و تکنولوژی</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar glass">
+    <a class="brand" href="#home"><span class="logo">D</span>DroidZone</a>
+    <nav>
+      <a href="#home" data-fa="خانه" data-en="Home">خانه</a>
+      <a href="#articles" data-fa="مقاله‌ها" data-en="Articles">مقاله‌ها</a>
+      <a href="#about" data-fa="درباره ما" data-en="About">درباره ما</a>
+    </nav>
+    <div class="actions">
+      <button id="language" class="small-btn" aria-label="Change language">EN</button>
+      <button id="theme" class="small-btn" aria-label="Toggle theme">☼</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="eyebrow">✦ ANDROID • TECHNOLOGY • INNOVATION</div>
+      <h1 data-fa="آیندهٔ تکنولوژی،<br>همین‌جاست." data-en="The future of<br>technology starts here.">آیندهٔ تکنولوژی،<br>همین‌جاست.</h1>
+      <p data-fa="آخرین خبرها، آموزش‌ها و ترفندهای اندروید در یک تجربهٔ مدرن." data-en="Android news, tutorials and tips in one modern experience.">آخرین خبرها، آموزش‌ها و ترفندهای اندروید در یک تجربهٔ مدرن.</p>
+      <a class="primary-btn" href="#articles" data-fa="کاوش مقاله‌ها ←" data-en="Explore articles →">کاوش مقاله‌ها ←</a>
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+    </section>
+
+    <section class="search glass">
+      <span>⌕</span>
+      <input id="search" type="search" placeholder="جست‌وجو در مقاله‌ها..." aria-label="Search articles">
+      <button id="clear" aria-label="Clear search">×</button>
+    </section>
+
+    <section id="articles" class="articles-section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-fa="کتابخانهٔ دیجیتال" data-en="DIGITAL LIBRARY">کتابخانهٔ دیجیتال</div>
+          <h2 data-fa="جدیدترین مطالب" data-en="Latest articles">جدیدترین مطالب</h2>
+        </div>
+        <span class="count" id="count">۴ مقاله</span>
+      </div>
+      <div class="filters">
+        <button class="filter active" data-category="all" data-fa="همه" data-en="All">همه</button>
+        <button class="filter" data-category="android" data-fa="اندروید" data-en="Android">اندروید</button>
+        <button class="filter" data-category="hyperos" data-fa="HyperOS" data-en="HyperOS">HyperOS</button>
+        <button class="filter" data-category="apps" data-fa="اپلیکیشن‌ها" data-en="Apps">اپلیکیشن‌ها</button>
+      </div>
+      <div id="article-list" class="article-grid"></div>
+      <p id="empty" hidden>مقاله‌ای پیدا نشد.</p>
+    </section>
+
+    <section id="about" class="about glass">
+      <div class="logo big-logo">D</div>
+      <div>
+        <div class="eyebrow">ABOUT DROIDZONE</div>
+        <h2>DroidZone</h2>
+        <p data-fa="یک پروژهٔ مستقل برای علاقه‌مندان اندروید و تکنولوژی. اینجا خانهٔ آموزش‌ها و تجربه‌های دیجیتال ماست." data-en="An independent project for Android and technology enthusiasts. Your home for digital guides and discoveries.">یک پروژهٔ مستقل برای علاقه‌مندان اندروید و تکنولوژی. اینجا خانهٔ آموزش‌ها و تجربه‌های دیجیتال ماست.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> DroidZone</span>
+    <span data-fa="ساخته‌شده برای عاشقان تکنولوژی 💙" data-en="Made for technology lovers 💙">ساخته‌شده برای عاشقان تکنولوژی 💙</span>
+  </footer>
+
+  <dialog id="reader" class="reader glass">
+    <button id="close-reader" class="close-btn" aria-label="Close">×</button>
+    <div id="reader-content"></div>
+  </dialog>
+</body>
+</html>
