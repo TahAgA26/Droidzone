@@ -18,8 +18,7 @@ export default async (request, context) => {
     const body = await request.json();
 
     const email = String(body.email || "").trim().toLowerCase();
-    const key = String(body.dzkey?.key || "");
-
+    const key = String(body.key || "");
     if (
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
       !/^[A-Za-z0-9_-]{43}$/.test(key)
