@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0c0f18">
+  <title>ورود و ثبت‌نام | DroidZone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="auth.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="index.html">DroidZone</a>
+    <a href="index.html">بازگشت به خانه</a>
+  </header>
+
+  <main class="profile-main">
+    <section class="profile-heading">
+      <h1>حساب کاربری DroidZone</h1>
+      <p>با کلید اختصاصی خود وارد شو یا یک حساب جدید بساز.</p>
+    </section>
+
+    <section class="user-card">
+      <div class="auth-tabs">
+        <button id="login-tab" class="active" type="button">ورود</button>
+        <button id="register-tab" type="button">ثبت‌نام</button>
+      </div>
+
+      <form id="login-form">
+        <h2>خوش برگشتی!</h2>
+
+        <label for="login-email">ایمیل</label>
+        <input id="login-email" type="email" required autocomplete="email">
+
+        <label for="login-key">فایل کلید امنیتی (.dzkey)</label>
+        <input id="login-key" type="file" accept=".dzkey,application/json" required>
+
+        <button class="primary-button" type="submit">ورود به حساب</button>
+      </form>
+
+      <form id="register-form" hidden>
+        <h2>ساخت حساب جدید</h2>
+
+        <label for="register-username">نام کاربری</label>
+        <input id="register-username" type="text" minlength="3" maxlength="24" required>
+
+        <label for="register-email">ایمیل</label>
+        <input id="register-email" type="email" required autocomplete="email">
+
+        <button class="primary-button" type="submit">ساخت حساب</button>
+
+        <p class="auth-warning">
+          پس از ثبت‌نام، فایل اختصاصی .dzkey دریافت می‌کنی.
+          آن را در جای امن نگه دار؛ بدون آن نمی‌توانی وارد حساب شوی.
+        </p>
+      </form>
+
+      <p id="auth-message" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="auth-year"></span> DroidZone</p>
+  </footer>
+
+</body>
+          </html>
