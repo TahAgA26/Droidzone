@@ -559,3 +559,131 @@ a:focus-visible {
     transition: none;
   }
   }
+/* DroidZone Authentication */
+
+.auth-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 5px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  background: var(--glass-bg);
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 12px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  font: inherit;
+  transition: background .2s ease, color .2s ease;
+}
+
+.auth-tabs button.active {
+  background: var(--accent);
+  color: #101820;
+  font-weight: 700;
+}
+
+#login-form,
+#register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+#login-form[hidden],
+#register-form[hidden] {
+  display: none;
+}
+
+#login-form h2,
+#register-form h2 {
+  margin: 0 0 12px;
+}
+
+#login-form label,
+#register-form label {
+  font-size: .9rem;
+  color: var(--text-muted);
+}
+
+#login-form input,
+#register-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  outline: none;
+  background: var(--glass-bg);
+  color: var(--text-color);
+  font: inherit;
+}
+
+#login-form input:focus,
+#register-form input:focus {
+  border-color: var(--accent);
+}
+
+.primary-button {
+  margin-top: 12px;
+  padding: 14px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--accent);
+  color: #101820;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.primary-button:hover {
+  opacity: .9;
+  transform: translateY(-1px);
+}
+
+.primary-button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.auth-warning {
+  padding: 13px;
+  border: 1px solid var(--glass-border);
+  border-radius: 13px;
+  color: var(--text-muted);
+  font-size: .85rem;
+  line-height: 1.9;
+}
+
+#auth-message {
+  min-height: 24px;
+  margin-top: 18px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+#auth-message.success-message {
+  color: #55d6a5;
+}
+
+#auth-message.error-message {
+  color: #ff7777;
+}
+
+@media (max-width: 600px) {
+  .profile-main {
+    padding-inline: 16px;
+  }
+
+  .auth-tabs button,
+  .primary-button {
+    min-height: 46px;
+  }
+  }
