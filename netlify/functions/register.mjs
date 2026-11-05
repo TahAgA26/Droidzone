@@ -91,7 +91,13 @@ export default async (request) => {
     return Response.json(
       { success: false, message: "Registration failed" },
       { status: 500
-      }
-    );
+        
+export const config = {
+  path: "/.netlify/functions/register",
+  rateLimit: {
+    windowLimit: 5,
+    windowSize: 60,
+    aggregateBy: ["ip"]
   }
 };
+    
