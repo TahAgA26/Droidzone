@@ -1,82 +1,201 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="DroidZone؛ اخبار اندروید، آموزش HyperOS، اپلیکیشن‌ها و دنیای تکنولوژی.">
-  <meta name="robots" content="index,follow">
-  <title>DroidZone — دنیای اندروید و تکنولوژی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DroidZone | دنیای فناوری</title>
+  <meta name="description" content="مقالات و مطالب فناوری در DroidZone">
+  <meta name="robots" content="noindex,nofollow">
+
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+
+  <style>
+    body {
+      visibility: hidden;
+    }
+
+    body.ready {
+      visibility: visible;
+    }
+
+    .dz-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      flex-wrap: wrap;
+    }
+
+    .dz-logo {
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .dz-nav {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .dz-nav a {
+      text-decoration: none;
+    }
+
+    .dz-main {
+      width: min(900px, 92%);
+      margin: 35px auto;
+    }
+
+    .dz-hero {
+      text-align: center;
+      padding: 35px 15px;
+    }
+
+    .dz-hero h1 {
+      font-size: clamp(28px, 6vw, 42px);
+      margin-bottom: 10px;
+    }
+
+    .dz-search {
+      width: 100%;
+      padding: 15px;
+      border-radius: 15px;
+      border: 1px solid #8885;
+      background: transparent;
+      color: inherit;
+      font-size: 16px;
+      margin: 20px 0;
+    }
+
+    .dz-button {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 13px;
+      background: var(--accent, #8eebcd);
+      color: #10221d;
+      text-decoration: none;
+      font-weight: bold;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .dz-section-title {
+      margin: 25px 0 15px;
+    }
+
+    #article-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 15px;
+    }
+
+    .dz-article {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid #8884;
+      background: #8881;
+    }
+
+    .dz-article h3 {
+      margin-top: 0;
+    }
+
+    .dz-article p {
+      line-height: 1.9;
+    }
+
+    .dz-empty {
+      text-align: center;
+      padding: 25px;
+      opacity: .7;
+    }
+
+    .dz-footer {
+      text-align: center;
+      padding: 25px;
+      opacity: .7;
+    }
+  </style>
+
+  <script>
+    (async function () {
+      try {
+        const response = await fetch("/.netlify/functions/me", {
+          credentials: "include",
+          cache: "no-store"
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success || !data.user) {
+          location.replace("auth.html");
+          return;
+        }
+
+        document.documentElement.classList.add("dz-authenticated");
+        document.addEventListener("DOMContentLoaded", () => {
+          document.body.classList.add("ready");
+        });
+
+      } catch (error) {
+        location.replace("auth.html");
+      }
+    })();
+  </script>
 </head>
+
 <body>
-  <header class="topbar glass">
-    <a class="brand" href="#home"><span class="logo">D</span>DroidZone</a>
-    <nav>
-      <a href="#home" data-fa="خانه" data-en="Home">خانه</a>
-      <a href="#articles" data-fa="مقاله‌ها" data-en="Articles">مقاله‌ها</a>
-      <a href="#about" data-fa="درباره ما" data-en="About">درباره ما</a>
+
+  <header class="dz-header">
+    <div class="dz-logo">DroidZone</div>
+
+    <nav class="dz-nav">
+      <a href="index.html">خانه</a>
+      <a href="#articles">مقاله‌ها</a>
+      <a href="submit.html">ارسال مقاله</a>
+      <a href="profile.html">پروفایل</a>
     </nav>
-    <div class="actions">
-      <button id="language" class="small-btn" aria-label="Change language">EN</button>
-      <button id="theme" class="small-btn" aria-label="Toggle theme">☼</button>
-    </div>
   </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="eyebrow">✦ ANDROID • TECHNOLOGY • INNOVATION</div>
-      <h1 data-fa="آیندهٔ تکنولوژی،<br>همین‌جاست." data-en="The future of<br>technology starts here.">آیندهٔ تکنولوژی،<br>همین‌جاست.</h1>
-      <p data-fa="آخرین خبرها، آموزش‌ها و ترفندهای اندروید در یک تجربهٔ مدرن." data-en="Android news, tutorials and tips in one modern experience.">آخرین خبرها، آموزش‌ها و ترفندهای اندروید در یک تجربهٔ مدرن.</p>
-      <a class="primary-btn" href="#articles" data-fa="کاوش مقاله‌ها ←" data-en="Explore articles →">کاوش مقاله‌ها ←</a>
-      <div class="orb orb-one"></div>
-      <div class="orb orb-two"></div>
+  <main class="dz-main">
+
+    <section class="dz-hero">
+      <h1>دنیای فناوری، یک‌جا</h1>
+      <p>جدیدترین مطالب و مقاله‌های فناوری را در DroidZone بخوان.</p>
+
+      <a class="dz-button" href="submit.html">
+        + ارسال مقاله
+      </a>
     </section>
 
-    <section class="search glass">
-      <span>⌕</span>
-      <input id="search" type="search" placeholder="جست‌وجو در مقاله‌ها..." aria-label="Search articles">
-      <button id="clear" aria-label="Clear search">×</button>
+    <section id="articles">
+      <h2 class="dz-section-title">مقاله‌ها</h2>
+
+      <input
+        id="search"
+        class="dz-search"
+        type="search"
+        placeholder="جست‌وجوی مقاله..."
+        autocomplete="off"
+      >
+
+      <div id="article-list"></div>
+
+      <p id="empty" class="dz-empty">
+        در حال بارگذاری مقاله‌ها...
+      </p>
     </section>
 
-    <section id="articles" class="articles-section">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow" data-fa="کتابخانهٔ دیجیتال" data-en="DIGITAL LIBRARY">کتابخانهٔ دیجیتال</div>
-          <h2 data-fa="جدیدترین مطالب" data-en="Latest articles">جدیدترین مطالب</h2>
-        </div>
-        <span class="count" id="count">۴ مقاله</span>
-      </div>
-      <div class="filters">
-        <button class="filter active" data-category="all" data-fa="همه" data-en="All">همه</button>
-        <button class="filter" data-category="android" data-fa="اندروید" data-en="Android">اندروید</button>
-        <button class="filter" data-category="hyperos" data-fa="HyperOS" data-en="HyperOS">HyperOS</button>
-        <button class="filter" data-category="apps" data-fa="اپلیکیشن‌ها" data-en="Apps">اپلیکیشن‌ها</button>
-      </div>
-      <div id="article-list" class="article-grid"></div>
-      <p id="empty" hidden>مقاله‌ای پیدا نشد.</p>
-    </section>
-
-    <section id="about" class="about glass">
-      <div class="logo big-logo">D</div>
-      <div>
-        <div class="eyebrow">ABOUT DROIDZONE</div>
-        <h2>DroidZone</h2>
-        <p data-fa="یک پروژهٔ مستقل برای علاقه‌مندان اندروید و تکنولوژی. اینجا خانهٔ آموزش‌ها و تجربه‌های دیجیتال ماست." data-en="An independent project for Android and technology enthusiasts. Your home for digital guides and discoveries.">یک پروژهٔ مستقل برای علاقه‌مندان اندروید و تکنولوژی. اینجا خانهٔ آموزش‌ها و تجربه‌های دیجیتال ماست.</p>
-      </div>
-    </section>
   </main>
 
-  <footer>
-    <span>© <span id="year"></span> DroidZone</span>
-    <span data-fa="ساخته‌شده برای عاشقان تکنولوژی 💙" data-en="Made for technology lovers 💙">ساخته‌شده برای عاشقان تکنولوژی 💙</span>
+  <footer class="dz-footer">
+    © <span id="year"></span> DroidZone
   </footer>
 
-  <dialog id="reader" class="reader glass">
-    <button id="close-reader" class="close-btn" aria-label="Close">×</button>
-    <div id="reader-content"></div>
-  </dialog>
+  <script src="script.js" defer></script>
+
 </body>
 </html>
