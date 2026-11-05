@@ -40,7 +40,6 @@ export default async (request, context) => {
       WHERE s.token_hash = ${tokenHash}
         AND s.revoked_at IS NULL
         AND s.expires_at > NOW()
-        AND u.email_verified = TRUE
       LIMIT 1
     `;
 
