@@ -1,3 +1,4 @@
+
 import { neon } from "@neondatabase/serverless";
 import { randomBytes, createHash } from "node:crypto";
 
@@ -90,14 +91,22 @@ export default async (request) => {
 
     return Response.json(
       { success: false, message: "Registration failed" },
-      { status: 500
-        
+      {
+        status: 500,
+        headers: {
+          "Cache-Control": "no-store"
+        }
+      }
+    );
+  }
+};
+
 export const config = {
   path: "/.netlify/functions/register",
   rateLimit: {
     windowLimit: 5,
     windowSize: 60,
-    aggregateBy: ["ip"]
+    aggregate
+          By: ["ip"]
   }
 };
-    
