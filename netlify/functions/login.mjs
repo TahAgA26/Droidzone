@@ -1,3 +1,4 @@
+
 import { neon } from "@neondatabase/serverless";
 import { createHash, randomBytes } from "node:crypto";
 
@@ -10,6 +11,10 @@ export default async (request, context) => {
   }
 
   try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("Database configuration missing");
+    }
+
     const body = await request.json();
 
     const email = String(body.email || "").trim().toLowerCase();
@@ -36,6 +41,7 @@ export default async (request, context) => {
       FROM users u
       JOIN dzkeys d ON d.user_id = u.id
       WHERE u.email = ${email}
+        AND u.email_verified = TRUE
         AND d.key_hash = ${keyHash}
         AND d.revoked_at IS NULL
         AND (d.expires_at IS NULL OR d.expires_at > NOW())
@@ -99,8 +105,13 @@ export default async (request, context) => {
 
     return Response.json(
       { success: false, message: "Login failed" },
-      { status: 50
-        0 }
+      {
+        status: 500,
+        headers: {
+          "Cache-Control": "no-store"
+        }
+   
+      }
     );
   }
 };
