@@ -1,8 +1,7 @@
-
 import { neon } from "@neondatabase/serverless";
 import { createHash, randomBytes } from "node:crypto";
 
-export default async (request) => {
+export default async (request, context) => {
   if (request.method !== "POST") {
     return Response.json(
       { success: false, message: "Method not allowed" },
@@ -50,10 +49,10 @@ export default async (request) => {
       );
     }
 
-    const sessionToken = randomBytes(32).toString("base64url");
+    const token = randomBytes(32).toString("base64url");
 
     const tokenHash = createHash("sha256")
-      .update(sessionToken)
+      .update(token)
       .digest("hex");
 
     await sql`
@@ -73,11 +72,20 @@ export default async (request) => {
       WHERE id = ${users[0].key_id}
     `;
 
+    context.cookies.set({
+      name: "__Host-dz_session",
+      value: token,
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      path: "/",
+      maxAge: 604800
+    });
+
     return Response.json(
       {
         success: true,
-        message: "Login successful",
-        token: sessionToken
+        message: "Login successful"
       },
       {
         headers: {
@@ -91,8 +99,8 @@ export default async (request) => {
 
     return Response.json(
       { success: false, message: "Login failed" },
-      { status: 500 
-      }
+      { status: 50
+        0 }
     );
   }
 };
