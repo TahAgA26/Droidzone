@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="مدیریت حساب کاربری و دستگاه‌های متصل به DroidZone">
+  <meta name="robots" content="noindex,nofollow">
+
+  <title>پروفایل من — DroidZone</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="profile.js" defer></script>
+</head>
+
+<body class="profile-page">
+
+  <header class="topbar glass">
+    <a class="brand" href="index.html">
+      <span class="logo">D</span>
+      DroidZone
+    </a>
+
+    <nav>
+      <a href="index.html">خانه</a>
+      <a href="index.html#articles">مقاله‌ها</a>
+      <a href="profile.html" class="profile-nav-active">پروفایل</a>
+    </nav>
+
+    <div class="actions">
+      <button id="profile-theme" class="small-btn" aria-label="تغییر پوسته">☼</button>
+    </div>
+  </header>
+
+  <main class="profile-main">
+
+    <section class="profile-heading">
+      <div class="eyebrow">DROIDZONE ACCOUNT CENTER</div>
+      <h1>پروفایل من</h1>
+      <p>حساب کاربری و دستگاه‌های متصل خود را مدیریت کن.</p>
+    </section>
+
+    <section class="profile-user-card glass">
+      <div class="profile-avatar" id="profile-avatar">D</div>
+
+      <div class="profile-user-info">
+        <span class="profile-label">خوش آمدی</span>
+        <h2 id="profile-username">در حال دریافت اطلاعات...</h2>
+        <p id="profile-email">لطفاً صبر کن</p>
+      </div>
+
+      <div class="profile-role" id="profile-role">کاربر</div>
+    </section>
+
+    <section class="profile-stats">
+
+      <div class="profile-stat glass">
+        <span class="stat-icon">🔑</span>
+        <span class="stat-label">کلیدهای فعال</span>
+        <strong id="active-key-count">—</strong>
+      </div>
+
+      <div class="profile-stat glass">
+        <span class="stat-icon">📱</span>
+        <span class="stat-label">کل دستگاه‌ها</span>
+        <strong id="total-key-count">—</strong>
+      </div>
+
+    </section>
+
+    <section class="keys-section">
+
+      <div class="profile-section-heading">
+        <div>
+          <div class="eyebrow">DEVICE MANAGEMENT</div>
+          <h2>دستگاه‌های متصل</h2>
+          <p>کلیدهای ورود و دسترسی دستگاه‌هایت را مدیریت کن.</p>
+        </div>
+
+        <button id="refresh-keys" class="small-btn">
+          ↻ بروزرسانی
+        </button>
+      </div>
+
+      <div id="keys-loading" class="profile-message glass">
+        در حال دریافت اطلاعات دستگاه‌ها...
+      </div>
+
+      <div id="keys-error" class="profile-message glass" hidden>
+        دریافت اطلاعات ناموفق بود.
+        <button id="retry-keys" class="small-btn">تلاش مجدد</button>
+      </div>
+
+      <div id="keys-empty" class="profile-message glass" hidden>
+        <span class="empty-icon">📱</span>
+        <h3>هنوز دستگاهی ثبت نشده است</h3>
+        <p>پس از ثبت کلید، دستگاه‌های تو اینجا نمایش داده می‌شوند.</p>
+      </div>
+
+      <div id="keys-list" class="keys-grid"></div>
+
+    </section>
+
+    <section class="profile-security glass">
+      <div>
+        <div class="eyebrow">ACCOUNT SECURITY</div>
+        <h2>امنیت حساب</h2>
+        <p>برای محافظت از حساب خود، کلیدهای ناشناس را لغو کن.</p>
+      </div>
+
+      <div class="security-status">
+        <span class="security-dot"></span>
+        مدیریت دسترسی دستگاه‌ها
+      </div>
+    </section>
+
+    <section class="profile-logout glass">
+      <div>
+        <h3>خروج از حساب</h3>
+        <p>نشست فعلی خود را در این دستگاه پایان بده.</p>
+      </div>
+
+      <button id="logout-button" class="danger-button">
+        خروج از حساب
+      </button>
+    </section>
+
+  </main>
+
+  <footer class="profile-footer">
+    <span>© <span id="profile-year"></span> DroidZone</span>
+    <a href="index.html">بازگشت به صفحه اصلی</a>
+  </footer>
+
+  <dialog id="revoke-dialog" class="reader glass">
+    <h2>قطع دسترسی دستگاه؟</h2>
+    <p>با تأیید این عملیات، کلید انتخاب‌شده لغو و تمام نشست‌های فعال این حساب بسته می‌شوند.</p>
+
+    <div class="dialog-actions">
+      <button id="cancel-revoke" class="small-btn">انصراف</button>
+      <button id="confirm-revoke" class="danger-button">تأیید و قطع دسترسی</button>
+    </div>
+  </dialog>
+
+  <dialog id="profile-notice" class="reader glass">
+    <h2 id="notice-title">پیام سیستم</h2>
+    <p id="notice-message"></p>
+    <button id="close-notice" class="small-btn">متوجه شدم</button>
+  </dialog>
+
+</body>
+        </html>
+        
