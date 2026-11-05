@@ -41,7 +41,6 @@ export default async (request, context) => {
       FROM users u
       JOIN dzkeys d ON d.user_id = u.id
       WHERE u.email = ${email}
-        AND u.email_verified = TRUE
         AND d.key_hash = ${keyHash}
         AND d.revoked_at IS NULL
         AND (d.expires_at IS NULL OR d.expires_at > NOW())
