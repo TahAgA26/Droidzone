@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ارسال مقاله | DroidZone</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      visibility: hidden;
+    }
+
+    body.ready {
+      visibility: visible;
+    }
+
+    .submit-container {
+      width: min(680px, 92%);
+      margin: 45px auto;
+    }
+
+    .submit-card {
+      padding: 25px;
+      border: 1px solid #8885;
+      border-radius: 20px;
+      background: #8881;
+    }
+
+    .submit-card h1 {
+      margin-top: 0;
+    }
+
+    .submit-card label {
+      display: block;
+      margin: 18px 0 8px;
+      font-weight: bold;
+    }
+
+    .submit-card input,
+    .submit-card textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #8886;
+      border-radius: 12px;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+    }
+
+    .submit-card textarea {
+      min-height: 220px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--accent, #8eebcd);
+      color: #10221d;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    #message {
+      margin-top: 16px;
+      line-height: 1.8;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+  </style>
+
+  <script>
+    (async function () {
+      try {
+        const response = await fetch("/.netlify/functions/me", {
+          credentials: "include",
+          cache: "no-store"
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success || !data.user) {
+          location.replace("auth.html");
+          return;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+          document.body.classList.add("ready");
+        });
+      } catch {
+        location.replace("auth.html");
+      }
+    })();
+  </script>
+</head>
+
+<body>
+
+  <main class="submit-container">
+    <a class="back-link" href="index.html">← بازگشت به DroidZone</a>
+
+    <section class="submit-card">
+      <h1>ارسال مقاله</h1>
+      <p>مقاله‌ات رو با بقیه کاربران DroidZone به اشتراک بذار.</p>
+
+      <form id="article-form">
+        <label for="title">عنوان مقاله</label>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          minlength="3"
+          maxlength="120"
+          placeholder="عنوان مقاله..."
+          required
+        >
+
+        <label for="content">متن مقاله</label>
+        <textarea
+          id="content"
+          name="content"
+          minlength="20"
+          maxlength="20000"
+          placeholder="مقاله‌ات رو اینجا بنویس..."
+          required
+        ></textarea>
+
+        <button class="submit-button" id="submit-button" type="submit">
+          انتشار مقاله
+        </button>
+
+        <p id="message" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="submit.js" defer></script>
+
+</body>
+</html>
