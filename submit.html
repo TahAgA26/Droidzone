@@ -17,18 +17,14 @@
 
     .submit-container {
       width: min(680px, 92%);
-      margin: 45px auto;
+      margin: 40px auto;
     }
 
     .submit-card {
-      padding: 25px;
+      padding: 24px;
       border: 1px solid #8885;
       border-radius: 20px;
       background: #8881;
-    }
-
-    .submit-card h1 {
-      margin-top: 0;
     }
 
     .submit-card label {
@@ -41,7 +37,7 @@
     .submit-card textarea {
       box-sizing: border-box;
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       border: 1px solid #8886;
       border-radius: 12px;
       background: transparent;
@@ -50,8 +46,18 @@
     }
 
     .submit-card textarea {
-      min-height: 220px;
+      min-height: 200px;
       resize: vertical;
+    }
+
+    .submit-card input[type="file"] {
+      font-size: 14px;
+    }
+
+    .help {
+      font-size: 13px;
+      opacity: .7;
+      line-height: 1.8;
     }
 
     .submit-button {
@@ -73,13 +79,13 @@
     }
 
     #message {
-      margin-top: 16px;
       line-height: 1.8;
+      overflow-wrap: anywhere;
     }
 
     .back-link {
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       text-decoration: none;
     }
   </style>
@@ -110,13 +116,12 @@
 </head>
 
 <body>
-
   <main class="submit-container">
     <a class="back-link" href="index.html">← بازگشت به DroidZone</a>
 
     <section class="submit-card">
       <h1>ارسال مقاله</h1>
-      <p>مقاله‌ات رو با بقیه کاربران DroidZone به اشتراک بذار.</p>
+      <p>مطلبت رو با دیگران به اشتراک بذار.</p>
 
       <form id="article-form">
         <label for="title">عنوان مقاله</label>
@@ -140,7 +145,25 @@
           required
         ></textarea>
 
-        <button class="submit-button" id="submit-button" type="submit">
+        <label for="files">پیوست فایل‌ها</label>
+        <input
+          id="files"
+          name="files"
+          type="file"
+          multiple
+          accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,audio/mpeg,audio/mp4,audio/ogg,application/pdf,text/plain"
+        >
+
+        <p class="help">
+          فرمت‌های مجاز: عکس، MP4، فایل صوتی MP3 و OGG، PDF و TXT.
+          حداکثر حجم هر فایل ۴ مگابایت است.
+        </p>
+
+        <button
+          class="submit-button"
+          id="submit-button"
+          type="submit"
+        >
           انتشار مقاله
         </button>
 
@@ -150,6 +173,5 @@
   </main>
 
   <script src="submit.js" defer></script>
-
 </body>
 </html>
