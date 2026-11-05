@@ -1,4 +1,3 @@
-
 import { neon } from "@neondatabase/serverless";
 import { createHash } from "node:crypto";
 
@@ -61,18 +60,36 @@ export default async (request, context) => {
           AND revoked_at IS NULL
           AND expires_at > NOW()
         LIMIT 1
+      ),
+      revoked_key AS (
+        UPDATE dzkeys
+        SET revoked_at = NOW()
+        WHERE id = ${keyId}
+          AND user_id = (
+            SELECT user_id FROM valid_session
+          )
+          AND revoked_at IS NULL
+        RETURNING user_id
+      ),
+      revoked_sessions AS (
+        UPDATE user_sessions AS s
+        SET revoked_at = NOW()
+        FROM revoked_key AS k
+        WHERE s.user_id = k.user_id
+          AND s.revoked_at IS NULL
+        RETURNING s.id
       )
-      UPDATE dzkeys
-      SET revoked_at = NOW()
-      WHERE id = ${keyId}
-        AND user_id = (SELECT user_id FROM valid_session)
-        AND revoked_at IS NULL
-      RETURNING id
+      SELECT
+        (SELECT COUNT(*) FROM revoked_key) AS keys_revoked,
+        (SELECT COUNT(*) FROM revoked_sessions) AS sessions_revoked
     `;
 
-    if (!result.length) {
+    if (Number(result[0].keys_revoked) === 0) {
       return Response.json(
-        { success: false, message: "Key not found or already revoked" },
+        {
+          success: false,
+          message: "Key not found or already revoked"
+        },
         { status: 404 }
       );
     }
@@ -80,7 +97,8 @@ export default async (request, context) => {
     return Response.json(
       {
         success: true,
-        message: "Key revoked successfully"
+        message: "Key and account sessions revoked",
+        sessionsRevoked: Number(result[0].sessions_revoked)
       },
       {
         headers: {
@@ -94,8 +112,8 @@ export default async (request, context) => {
 
     return Response.json(
       { success: false, message: "Could not revoke key" },
-      { status: 500 
-      }
+      { status: 500
+}
     );
   }
 };
