@@ -106,7 +106,6 @@ export const config = {
   rateLimit: {
     windowLimit: 5,
     windowSize: 60,
-    aggregate
-          By: ["ip"]
+    aggregateBy: ["ip"]
   }
 };
